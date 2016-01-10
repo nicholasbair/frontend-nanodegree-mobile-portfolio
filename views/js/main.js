@@ -422,9 +422,9 @@ var resizePizzas = function(size) {
 
    // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
   function determineDx (elem, size) {
-    var oldWidth = elem.offsetWidth;
-    var windowWidth = document.querySelector("#randomPizzas").offsetWidth;
-    var oldSize = oldWidth / windowWidth;
+    var oldWidth = elem.offsetWidth,
+        windowWidth = document.querySelector("#randomPizzas").offsetWidth,
+        oldSize = oldWidth / windowWidth;
 
     // TODO: change to 3 sizes? no more xl?
     // Changes the slider value to a percent width
@@ -447,9 +447,13 @@ var resizePizzas = function(size) {
     return dx;
   }
 
+  // TODO: check this function, are pizzas the same size?
+
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
+      var len = document.querySelectorAll(".randomPizzaContainer").length,
+        i;
+    for (i = 0; i < len; i++) {
       var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size),
         newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
       document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
@@ -486,8 +490,9 @@ var frame = 0;
 // Logs the average amount of time per 10 frames needed to move the sliding background pizzas on scroll.
 function logAverageFrame(times) {   // times is the array of User Timing measurements from updatePositions()
   var numberOfEntries = times.length,
-    sum = 0;
-  for (var i = numberOfEntries - 1; i > numberOfEntries - 11; i--) {
+    sum = 0,
+    i;
+  for (i = numberOfEntries - 1; i > numberOfEntries - 11; i--) {
     sum = sum + times[i].duration;
   }
   console.log("Average time to generate last 10 frames: " + sum / 10 + "ms");
@@ -496,13 +501,17 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
+// TODO: forced reflow @ line 506
+
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.querySelectorAll('.mover');
-  for (var i = 0; i < items.length; i++) {
+  var items = document.querySelectorAll('.mover'),
+    i,
+    len = items.length;
+  for (i = 0; i < len; i++) {
     var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
@@ -522,9 +531,10 @@ window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
-  var cols = 8;
-  var s = 256;
-  for (var i = 0; i < 200; i++) {
+  var cols = 8,
+    s = 256,
+    i;
+  for (i = 0; i < 200; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
