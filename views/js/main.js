@@ -420,7 +420,9 @@ var resizePizzas = function(size) {
   function determineDx (elem, size) {
     var oldWidth = elem.offsetWidth,
         windowWidth = document.querySelector("#randomPizzas").offsetWidth,
-        oldSize = oldWidth / windowWidth;
+        oldSize = oldWidth / windowWidth,
+        newSize = sizeSwitcher(size),
+        dx = (newSize - oldSize) * windowWidth;
 
     // TODO: change to 3 sizes? no more xl?
     // Changes the slider value to a percent width
@@ -436,9 +438,6 @@ var resizePizzas = function(size) {
           console.log("bug in sizeSwitcher");
       }
     }
-
-    var newSize = sizeSwitcher(size);
-    var dx = (newSize - oldSize) * windowWidth;
 
     return dx;
   }
@@ -468,10 +467,16 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
-for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
-  pizzasDiv.appendChild(pizzaElementGenerator(i));
-}
+
+(function() {
+    var i,
+        len = 100,
+        pizzasDiv = document.getElementById("randomPizzas");
+
+    for (i = 2; i < len; i++) {
+      pizzasDiv.appendChild(pizzaElementGenerator(i));
+    }
+})();
 
 // User Timing API again. These measurements tell you how long it took to generate the initial pizzas
 window.performance.mark("mark_end_generating");
@@ -506,11 +511,19 @@ function updatePositions() {
 
   var items = document.querySelectorAll('.mover'),
     i,
-    len = items.length,
-    phase;
+    len = items.length * 0.75,
+    phase,
+    randomArr = [1, 2, 3],
+    minArg = 0,
+    maxArg = randomArr.length - 1,
+    scrollVal = 5000, // original value 1750
+    randomFun = function(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
+
   for (i = 0; i < len; i++) {
-    phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    phase = Math.sin((document.body.scrollTop / scrollVal) + randomArr[randomFun(minArg, maxArg)]);
+    items[i].style.transform = 'translateX(' + (items[i].basicLeft) * phase + 'px)';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
