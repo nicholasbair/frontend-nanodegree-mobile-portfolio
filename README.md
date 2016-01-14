@@ -22,7 +22,6 @@ _This project is part of the Udacity Front-End Developer Nanodegree_
 [x] Reduce image size  
 
 #### Page Scrolling - pizza.html
-[] Remove unused styles from CSS  
-[] Minify HTML, CSS, JS  
+[x] Minify HTML, CSS, JS  
 [x] Reduce image size  
-[] Optimize JS loops  
+[x] Optimize JS loops  
