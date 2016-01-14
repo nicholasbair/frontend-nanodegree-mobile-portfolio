@@ -402,15 +402,16 @@ var resizePizzas = function(size) {
 
   // Changes the value for the size of the pizza above the slider
   function changeSliderLabel(size) {
+      var pizzaSize = document.querySelector("#pizzaSize");
     switch(size) {
       case "1":
-        document.querySelector("#pizzaSize").innerHTML = "Small";
+        pizzaSize.innerHTML = "Small";
         return;
       case "2":
-        document.querySelector("#pizzaSize").innerHTML = "Medium";
+        pizzaSize.innerHTML = "Medium";
         return;
       case "3":
-        document.querySelector("#pizzaSize").innerHTML = "Large";
+        pizzaSize.innerHTML = "Large";
         return;
       default:
         console.log("bug in changeSliderLabel");
@@ -427,7 +428,6 @@ var resizePizzas = function(size) {
         newSize = sizeSwitcher(size),
         dx = (newSize - oldSize) * windowWidth;
 
-    // TODO: change to 3 sizes? no more xl?
     // Changes the slider value to a percent width
     function sizeSwitcher (size) {
       switch(size) {
@@ -450,11 +450,14 @@ var resizePizzas = function(size) {
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
       var len = document.querySelectorAll(".randomPizzaContainer").length,
-        i;
+        pizzaContainerArr = document.querySelectorAll(".randomPizzaContainer"),
+        i,
+        dx,
+        newwidth;
     for (i = 0; i < len; i++) {
-      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size),
-        newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
-      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
+      dx = determineDx(pizzaContainerArr[i], size);
+      newwidth = (pizzaContainerArr[i].offsetWidth + dx) + 'px';
+      pizzaContainerArr[i].style.width = newwidth;
     }
   }
 
@@ -504,9 +507,6 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
-
-// TODO: long frame @ 528
-// generate less pizzas moving horizontally
 
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
