@@ -15,7 +15,7 @@ _This project is part of the Udacity Front-End Developer Nanodegree_
 ###Optimizations
 
 #### Page Loading - index.html
-[x] Remove unused styles from CSS
+[x] Remove unused styles from CSS  
 [x] Minify HTML, CSS, JS
 [x] Inline CSS
 [x] Async JS
