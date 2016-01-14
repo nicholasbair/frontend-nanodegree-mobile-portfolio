@@ -9,14 +9,20 @@ _This project is part of the Udacity Front-End Developer Nanodegree_
 3. In the terminal, navigate to the dist folder of the repo.
 4. Start http-server
 5. Open a new tab in the terminal and run localtunnel
-    -lt --port 8080
+    1. lt --port 8080
 6. Use the url localtunnel provides to test performance on PageSpeed Insights
 
 ###Optimizations
 
-#### Page Loading
-1. Remove unused styles from CSS
-2. Minify HTML, CSS, JS
-2. Inline CSS
-3. Async JS
-4. Reduce image size
+#### Page Loading - index.html
+[x] Remove unused styles from CSS
+[x] Minify HTML, CSS, JS
+[x] Inline CSS
+[x] Async JS
+[x] Reduce image size
+
+#### Page Scrolling - pizza.html
+[] Remove unused styles from CSS
+[] Minify HTML, CSS, JS
+[x] Reduce image size
+[] Optimize JS loops
