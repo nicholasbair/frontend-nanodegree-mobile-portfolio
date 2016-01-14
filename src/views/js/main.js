@@ -521,12 +521,13 @@ function updatePositions() {
     minArg = 0,
     maxArg = randomArr.length - 1,
     scrollVal = 1750,
+    scrollTop = document.body.scrollTop,
     randomFun = function(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     };
 
   for (i = 0; i < len; i++) {
-    phase = Math.sin((document.body.scrollTop / scrollVal) + randomArr[randomFun(minArg, maxArg)]);
+    phase = Math.sin((scrollTop / scrollVal) + randomArr[randomFun(minArg, maxArg)]);
     items[i].style.transform = 'translateX(' + (items[i].basicLeft) * phase + 'px)';
   }
 
