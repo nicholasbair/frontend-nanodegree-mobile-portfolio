@@ -333,17 +333,20 @@ var makeRandomPizza = function() {
   var pizza = "",
     numberOfMeats = Math.floor((Math.random() * 4)),
     numberOfNonMeats = Math.floor((Math.random() * 3)),
-    numberOfCheeses = Math.floor((Math.random() * 2));
+    numberOfCheeses = Math.floor((Math.random() * 2)),
+    i,
+    j,
+    k;
 
-  for (var i = 0; i < numberOfMeats; i++) {
+  for (i = 0; i < numberOfMeats; i++) {
     pizza = pizza + ingredientItemizer(selectRandomMeat());
   }
 
-  for (var j = 0; j < numberOfNonMeats; j++) {
+  for (j = 0; j < numberOfNonMeats; j++) {
     pizza = pizza + ingredientItemizer(selectRandomNonMeat());
   }
 
-  for (var k = 0; k < numberOfCheeses; k++) {
+  for (k = 0; k < numberOfCheeses; k++) {
     pizza = pizza + ingredientItemizer(selectRandomCheese());
   }
 
@@ -373,7 +376,7 @@ var pizzaElementGenerator = function(i) {
   pizzaContainer.id = "pizza" + i;                // gives each pizza element a unique id
   pizzaImageContainer.classList.add("col-md-6");
 
-  pizzaImage.src = "images/pizza.png";
+  pizzaImage.src = "images/pizza-min.png";
   pizzaImage.classList.add("img-responsive");
   pizzaImageContainer.appendChild(pizzaImage);
   pizzaContainer.appendChild(pizzaImageContainer);
@@ -502,7 +505,8 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
-// TODO: forced reflow @ line 506
+// TODO: long frame @ 528
+// general less pizzas moving horizontally
 
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
@@ -540,16 +544,17 @@ function updatePositions() {
 window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
+// original val of i was 200
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8,
     s = 256,
     i,
     elem;
 
-  for (i = 0; i < 200; i++) {
+  for (i = 0; i < 50; i++) {
     elem = document.createElement('img');
     elem.className = 'mover';
-    elem.src = "images/pizza.png";
+    elem.src = "images/pizza-min-resize.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
