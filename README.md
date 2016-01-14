@@ -16,13 +16,13 @@ _This project is part of the Udacity Front-End Developer Nanodegree_
 
 #### Page Loading - index.html
 [x] Remove unused styles from CSS  
-[x] Minify HTML, CSS, JS
-[x] Inline CSS
-[x] Async JS
-[x] Reduce image size
+[x] Minify HTML, CSS, JS  
+[x] Inline CSS  
+[x] Async JS  
+[x] Reduce image size  
 
 #### Page Scrolling - pizza.html
-[] Remove unused styles from CSS
-[] Minify HTML, CSS, JS
-[x] Reduce image size
-[] Optimize JS loops
+[] Remove unused styles from CSS  
+[] Minify HTML, CSS, JS  
+[x] Reduce image size  
+[] Optimize JS loops  
