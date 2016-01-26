@@ -24,4 +24,5 @@ _This project is part of the Udacity Front-End Developer Nanodegree_
 #### Page Scrolling - pizza.html
 [x] Minify HTML, CSS, JS  
 [x] Reduce image size  
-[x] Optimize JS loops  
+[x] Optimize JS loops
+[x] Remove use of getQuerySelector
